@@ -1,5 +1,6 @@
 package com.psybrainy.alkemychallenge.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,8 +42,13 @@ public class CourseImplRepo implements CourseRepository {
 
 	@Override
 	public Optional<List<CourseRequest>> getCoursesNotRegister(String dniStudent) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CourseEntity> courseEntityList = courseRepo.getCoursesNotRegister(dniStudent)
+                .orElse(new ArrayList<>());
+
+        return Optional.of(courseEntityList
+                .stream()
+                .map(courseEntity -> mapper.toCourseRequest(courseEntity))
+                .collect(Collectors.toList()));
 	}
 
 	@Override
