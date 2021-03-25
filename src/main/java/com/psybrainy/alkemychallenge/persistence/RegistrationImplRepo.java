@@ -36,12 +36,6 @@ public class RegistrationImplRepo implements RegistrationRepository{
 	}
 
 	@Override
-	public Optional<List<RegistrationRequest>> getByStundentDni(String studentDNI) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Optional<RegistrationRequest> getById(Long regisId) {
 		return Optional.of(repo.findById(regisId)
                 .map(registration -> mapper.toRegistrationRequest(registration))
