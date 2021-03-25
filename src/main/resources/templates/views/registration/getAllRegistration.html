@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: head">
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+<body>
+<header th:replace="template :: header"></header>
+
+<div class="container">
+    <h1 th:text="${title}"></h1>
+</div>
+
+<div class="container">
+
+    <form th:action="@{/views/registration/save}" th:object="${registration}" method="post">
+        <table class="table" >
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Materia</th>
+                <th scope="col">Horario</th>
+                <th scope="col">Limite de cupos</th>
+                <th scope="col">Inscribirse</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cour:${courses}" >
+                <th scope="row" th:text="${cour.courseID}"></th>
+                <td th:text="${cour.name}"></td>
+                <td th:text="${cour.date}"></td>
+                <td th:text="${cour.limitShare}"></td>
+                <td>
+                    <a class="btn btn-success btn-sm" th:href="@{/views/registration/save/} +
+                    ${cour.courseID}" title="Modificar Registro" >
+                        Inscribirse
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="card-footer bg-dark">
+            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+        </div>
+    </form>
+</div>
+
+<footer th:replace="template :: footer"></footer>
+</body>
+</html>
