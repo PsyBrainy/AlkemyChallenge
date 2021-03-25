@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: head">
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+<body>
+<header th:replace="template :: header"></header>
+
+<div class="container">
+    <h1 th:text="${title}"></h1>
+</div>
+
+<div class="container">
+
+    <a class="btn btn-primary btn-sm" th:href="@{/views/course/create}" title="Crear Nueva Materia">
+        Nueva Materia
+    </a>
+
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Cupos</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cour:${courses}">
+            <th scope="row" th:text="${cour.courseID}"></th>
+            <td th:text="${cour.name}"></td>
+            <td th:text="${cour.date}"></td>
+            <td th:text="${cour.limitShare}"></td>
+            <td>
+                <a class="btn btn-success btn-sm" th:href="@{/views/course/edit/} + ${cour.courseID}" title="Modificar Registro">
+                    Editar
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/views/course/delete/} + ${cour.courseID}" title="Eliminar Registro"
+                   onclick="return confirm('¿Esta seguro que desea eliminar la materia?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="template :: footer"></footer>
+</body>
+</html>
