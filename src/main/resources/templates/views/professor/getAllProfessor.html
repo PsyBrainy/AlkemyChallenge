@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: head">
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+<body>
+<header th:replace="template :: header"></header>
+
+<div class="container">
+    <h1 th:text="${title}"></h1>
+</div>
+
+<div class="container">
+
+    <a class="btn btn-primary btn-sm" th:href="@{/views/professor/create}" title="Crear Nuevo Profesor">
+        Nuevo Profesor
+    </a>
+
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pr:${professors}">
+            <th scope="row" th:text="${pr.profId}"></th>
+            <td th:text="${pr.lastName}"></td>
+            <td th:text="${pr.name}"></td>
+            <td th:text="${pr.dni}"></td>
+            <td th:text="${pr.active}"></td>
+            <td>
+                <a class="btn btn-success btn-sm" th:href="@{/views/professor/edit/} + ${pr.profId}" title="Modificar Registro">
+                    Editar
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/views/professor/delete/} + ${pr.profId}" title="Eliminar Registro"
+                onclick="return confirm('¿Esta seguro que desea eliminar el registro?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer th:replace="template :: footer"></footer>
+</body>
+</html>

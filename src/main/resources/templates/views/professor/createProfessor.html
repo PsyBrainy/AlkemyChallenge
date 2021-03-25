@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="template :: head">
+    <meta charset="UTF-8">
+    <title> </title>
+</head>
+<body>
+<header th:replace="template :: header"></header>
+
+<div class="card bg-secondary">
+    <div class="card-header bg-dark bg-white" th:text="${title}"></div>
+    <div class="card-body"></div>
+
+
+<div class="container">
+    <form th:action="@{/views/professor/save}" th:object="${professor}" method="post">
+        <div class="mb-3">
+            <input type="hidden" th:field="*{profId}">
+            <label for="name" class="col-md-2">Nombre</label>
+            <input type="text" th:field="*{name}" class="form-control form-control-sm col-md-6" id="name" placeholder="Nombre del Profesor">
+            <small></small>
+        </div>
+        <div class="mb-3">
+            <label for="lastName" class="col-md-2">Apellido</label>
+            <input type="text" th:field="*{lastName}" class="form-control form-control-sm col-md-6" id="lastName" placeholder="Apellido del Profesor">
+            <small></small>
+        </div>
+        <div class="mb-3">
+            <label for="dni" class="col-md-2">DNI</label>
+            <input type="text" th:field="*{dni}" class="form-control form-control-sm col-md-6" id="dni" placeholder="DNI del Profesor">
+            <small></small>
+        </div>
+
+        <div class="card-footer bg-dark">
+            <input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+        </div>
+
+
+    </form>
+</div>
+</div>
+
+
+<footer th:replace="template :: footer"></footer>
+</body>
+</html>
