@@ -34,10 +34,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// TODO Auto-generated method stub
-		super.configure(http);
+		
+		http.authorizeRequests()
+		.antMatchers("/index", "/home", "/", "/views/registration/**" ,"/css/**","/js/**").permitAll()
+		.antMatchers("/views/course/").hasAnyRole("ADMIN")
+		.antMatchers("/views/course/create/").hasAnyRole("ADMIN")
+		.antMatchers("/views/course/save/").hasAnyRole("ADMIN")
+		.antMatchers("/views/course/edit/").hasAnyRole("ADMIN")
+		.antMatchers("/views/course/delete/").hasAnyRole("ADMIN")
+		.antMatchers("/views/professor/").hasAnyRole("ADMIN")
+		.antMatchers("/views/professor/create/").hasAnyRole("ADMIN")
+		.antMatchers("/views/professor/save/").hasAnyRole("ADMIN")
+		.antMatchers("/views/professor/edit/").hasAnyRole("ADMIN")
+		.antMatchers("/views/professor/delete/").hasAnyRole("ADMIN")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().permitAll()
+		.and()
+		.logout().permitAll();
 	}
-	
-	
-
 }
