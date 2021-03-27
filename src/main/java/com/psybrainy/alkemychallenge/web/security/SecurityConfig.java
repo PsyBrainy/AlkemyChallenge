@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-		.antMatchers("/index", "/home", "/", "/views/registration/**" ,"/css/**","/js/**").permitAll()
+		.antMatchers("/index", "/home", "/", "/views/registration/**" ,"/css/**","/js/**", "/images/**").permitAll()
 		.antMatchers("/views/course/").hasAnyRole("ADMIN")
 		.antMatchers("/views/course/create/").hasAnyRole("ADMIN")
 		.antMatchers("/views/course/save/").hasAnyRole("ADMIN")
@@ -49,7 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.antMatchers("/views/professor/delete/").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
 		.and()
-		.formLogin().permitAll()
+		.formLogin().loginPage("/login")
+		.permitAll()
 		.and()
 		.logout().permitAll();
 	}
